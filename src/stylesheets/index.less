@@ -1,14 +1,42 @@
-body {
+// fonts
+@font-face {
+  font-family: 'CoHeadline-Bold';
+  src: url('../fonts/CoHeadlineBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Brown';
+  src: url('../fonts/Brown.woff') format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Brown';
+  src: url('../fonts/BrownBold.woff') format('woff');
+  font-weight: 700;
+}
+
+// mixins
+.zero-space() {
   padding: 0rem;
   margin: 0rem;
 }
 
+// styles
+body {
+  .zero-space;
+  font-family: 'Brown', sans-serif;
+  font-weight: 300;
+  font-size: 100%;
+}
+
 * {
+  .zero-space;
   box-sizing: border-box;
 }
 
 .container {
-  margin: 0rem 1rem;
+  padding: 0rem 1rem;
 
   @media screen and (min-width: 992px) {
     margin: 0rem auto;
@@ -17,5 +45,5 @@ body {
 }
 
 .container-fluid {
-  width: 100%;  
+  width: 100%;
 }

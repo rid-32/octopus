@@ -1,0 +1,15 @@
+@import '../../../stylesheets/vars.less';
+
+.button {
+  color: @confirmColor;
+  background: url('../../../img/confirm-bg.png') no-repeat;
+  width: 39.125rem;
+  padding-top: 3.125rem;
+  padding-bottom: 3.125rem;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    color: lighten(@confirmColor, 10%);
+  }
+}

@@ -1,0 +1,67 @@
+@import '../../stylesheets/vars.less';
+
+.container {
+  background-color: @backgroundColor;
+  padding-top: 8.1875rem;
+  padding-bottom: 8.1875rem;
+  text-align: center;
+  color: #fff;
+  font-size: 1.825rem;
+}
+
+.page {
+  &Title {
+    font-family: 'CoHeadline-Bold', sans-serif;
+    font-size: 4.125rem;
+  }
+
+  &Notice {
+    margin-top: 4.625rem;
+  }
+
+  &Delimiter {
+    border: 4px solid @borderColor;
+    width: 100%;
+    margin-top: 3.1875rem;
+  }
+
+  &Form {
+    margin-top: 6.5625rem;
+
+    &Title {
+      text-align: left;
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    &YearsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+    }
+
+    &SearchContainer {
+      margin-top: 4.125rem;
+    }
+  }
+
+  &Button {
+    text-align: center;
+    flex-basis: 48%;
+  }
+
+  &Search {
+    text-align: left;
+    width: 100%;
+    margin-top: 1.6875rem;
+  }
+
+  &ConfirmButton {
+    margin-top: 6.25rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
