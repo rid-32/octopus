@@ -1,3 +1,8 @@
-export default function (state = {}, action = {}) {
-  return state;
-}
+import { combineReducers } from 'redux'
+
+// reducers
+import addresses from './addresses'
+
+export default combineReducers({
+  addresses,
+})

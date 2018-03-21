@@ -6,7 +6,12 @@ import { Route } from 'react-router-dom'
 import ApplicationHeader from '../shared/ApplicationHeader'
 import AddressesContainer from '../addresses'
 
-class MainPageContainer extends Component {
+class HomePageContainer extends Component {
+
+  componentDidMount() {
+    const { history } = this.props
+    history.push('/')
+  }
 
   render() {
     return (
@@ -18,4 +23,4 @@ class MainPageContainer extends Component {
   }
 }
 
-export default MainPageContainer
+export default HomePageContainer

@@ -14,9 +14,7 @@ class ApplicationContainer extends Component {
   render() {
     return (
       <div>
-        <Route path='/' component={HomePageContainer}>
-
-        </Route>
+        <Route path='/' component={HomePageContainer} />
       </div>
     );
   }

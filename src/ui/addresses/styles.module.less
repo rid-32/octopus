@@ -26,10 +26,10 @@
   }
 
   &Form {
-    margin-top: 6.5625rem;
 
     &Title {
       text-align: left;
+      margin-top: 6.5625rem;
 
       span {
         font-weight: 700;
@@ -51,17 +51,80 @@
   &Button {
     text-align: center;
     flex-basis: 48%;
+
+    &List {
+      position: absolute;
+      left: 0rem;
+      top: 100%;
+      width: 100%;
+      border: 3px solid @borderColor;
+      background-color: @backgroundColor;
+      z-index: 2;
+    }
   }
 
   &Search {
     text-align: left;
     width: 100%;
     margin-top: 1.6875rem;
+    color: inherit;
+    text-decoration: none;
   }
 
   &ConfirmButton {
     margin-top: 6.25rem;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  &ConfirmMessage {
+    text-align: left;
+    margin-top: 6.1875rem;
+
+    &Title {
+      margin-top: 1rem;
+    }
+
+    @media screen and (min-width: 1200px) {
+      width: 964px;
+      margin-left: -100px;
+    }
+
+    @media screen and (min-width: 1920px) {
+      margin-left: -40%;
+    }
+  }
+}
+
+.addresses {
+  max-width: 122.75rem;
+  margin-top: 3.5625rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  &Row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: left;
+
+    &:not(:first-child) {
+      margin-top: 4.125rem;
+    }
+  }
+
+  &Block {
+    flex-basis: 48%;
+  }
+
+  &Button {
+    width: 100%;
+    margin-top: 1.625rem;
+  }
+
+  &Icon {
+    font-size: 3rem;
   }
 }
