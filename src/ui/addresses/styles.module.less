@@ -59,7 +59,12 @@
       width: 100%;
       border: 3px solid @borderColor;
       background-color: @backgroundColor;
+      color: #fff;
       z-index: 2;
+
+      div:hover {
+        color: @confirmColor;
+      }
     }
   }
 
@@ -112,6 +117,12 @@
 
     &:not(:first-child) {
       margin-top: 4.125rem;
+    }
+
+    &:hover {
+      .addressesButton {
+        color: @confirmColor;
+      }
     }
   }
 

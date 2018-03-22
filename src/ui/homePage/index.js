@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 // components
 import ApplicationHeader from '../shared/ApplicationHeader'
 import AddressesContainer from '../addresses'
 
-class HomePageContainer extends Component {
+class HomePage extends Component {
+  static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }),
+  }
 
   componentDidMount() {
     const { history } = this.props
@@ -23,4 +28,4 @@ class HomePageContainer extends Component {
   }
 }
 
-export default HomePageContainer
+export default HomePage

@@ -1,4 +1,5 @@
 import types from './const'
+import Api from '../../api'
 
 export const setAddresses = addresses => ({
   type: types.SET_ADDRESSES,
@@ -17,3 +18,14 @@ export const setPostcode = postcode => ({
   type: types.SET_POSTCODE,
   payload: postcode,
 })
+
+export const getAddresses = postcode =>
+  dispatch => {
+    dispatch(setLoading())
+    return Api.getAddresses(postcode)
+      .then(addresses => {
+        dispatch(setAddresses(addresses))
+        dispatch(unsetLoading())
+        return addresses
+      })
+  }

@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 
-// API
-import Api from '../../../api'
-
 // styles
 import styles from './styles.module.less'
 
@@ -23,15 +20,9 @@ class Input extends Component {
     const { value } = this.state
     const { history, actions } = this.props
 
-    actions.setLoading()
     actions.setPostcode(value)
-
-    Api.getAddresses(value)
-      .then(addresses => {
-        actions.setAddresses(addresses)
-        actions.unsetLoading()
-        history.push('/select')
-      })
+    actions.getAddresses(value)
+      .then(addresses => history.push('/select'))
       .catch(error => {
         actions.unsetLoading()
         history.push('/error')
@@ -55,7 +46,7 @@ class Input extends Component {
             onChange={this.onChange}
             placeholder={placeholder}
           />
-          <i className={`fas fa-search ${styles.formIcon}`}></i>
+          <i className={`fas fa-search ${styles.formIcon}`} onClick={this.onSubmit}></i>
         </form>
         {isLoading && (
           <div className={styles.load}>

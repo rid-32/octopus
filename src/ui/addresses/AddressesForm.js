@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 
 // components
 import Button from '../shared/Button'
-import Input from '../shared/Input'
+import Input from '../Input'
 import ErrorMessage from '../shared/ErrorMessage'
 
 // styles
@@ -43,14 +43,14 @@ class AddressesForm extends Component {
               <Button
                 className={styles.pageSearch}
                 isIcon={true}
-                click={this.toggleSelect}
+                onClick={this.toggleSelect}
               >
                 Select your Address
               </Button>
             </div>
           )
         }} />
-        <Route path='/error' component={ErrorMessage} />
+        {!isLoading && <Route path='/error' component={ErrorMessage} />}
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
 import range from 'lodash/range'
 import map from 'lodash/map'
@@ -13,65 +14,27 @@ import Button from '../shared/Button'
 import styles from './styles.module.less'
 
 class Addresses extends Component {
-
-  state = {
-    year: 1,
-    month: 4,
-    street: '',
-    town: '',
-    rowNumber: -1,
-    yearIsOpen: false,
-    monthIsOpen: false,
-  }
-
-  changeYear = ({ target }) => {
-    const year = target.getAttribute('value') || this.state.year
-
-    this.setState({
-      ...this.state,
-      yearIsOpen: !this.state.yearIsOpen,
-      year,
-    })
-  }
-
-  changeMonth = ({ target }) => {
-    const month = target.getAttribute('value') || this.state.month
-
-    this.setState({
-      ...this.state,
-      monthIsOpen: !this.state.monthIsOpen,
-      month,
-    })
-  }
-
-  changeAddress = (number, address) =>
-    this.setState({
-      ...this.state,
-      rowNumber: number,
-      street: address[0],
-      town: address[address.length - 2],
-    })
-
-  onSubmit = _ => {
-    const { history, location } = this.props
-    const { rowNumber } = this.state
-    if (!location.pathname.includes('confirmed') && rowNumber !== -1) {
-      this.setState({
-        ...this.state,
-        rowNumber: -1,
-      })
-      history.push('/confirmed')
-    }
-  }
-
-  closeMessage = _ => {
-    const { history } = this.props
-    history.push('/')
+  static propTypes = {
+    postcode: PropTypes.string.isRequired,
+    state: PropTypes.shape({
+      year: PropTypes.string.isRequired,
+      month: PropTypes.string.isRequired,
+      rowNumber: PropTypes.number.isRequired,
+      yearIsOpen: PropTypes.bool.isRequired,
+      monthIsOpen: PropTypes.bool.isRequired,
+      street: PropTypes.string.isRequired,
+      town: PropTypes.string.isRequired,
+    }).isRequired,
+    closeMessage: PropTypes.func.isRequired,
+    changeYear: PropTypes.func.isRequired,
+    changeMonth: PropTypes.func.isRequired,
+    changeAddress: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   }
 
   render() {
-    const { year, month, yearIsOpen, monthIsOpen, rowNumber, street, town } = this.state
-    const { postcode } = this.props
+    const { postcode, state, closeMessage, changeYear, changeMonth, changeAddress, onSubmit } = this.props
+    const { year, month, yearIsOpen, monthIsOpen, rowNumber, street, town } = state
 
     return (
       <div className={styles.container}>
@@ -81,7 +44,7 @@ class Addresses extends Component {
           <div className={styles.pageDelimiter}></div>
 
           <Route path='/confirmed' render={() => (
-            <ConfirmMessage className={styles.pageConfirmMessage} close={this.closeMessage}>
+            <ConfirmMessage className={styles.pageConfirmMessage} close={closeMessage}>
               <p>{`${street}, ${postcode}, ${town}`}</p>
               <p className={styles.pageConfirmMessageTitle}>{`Time at address: ${year} year${year > 1 ? 's' : ''} ${month} month${month > 1 ? 's' : ''}`}</p>
             </ConfirmMessage>
@@ -89,7 +52,7 @@ class Addresses extends Component {
 
           <p className={styles.pageFormTitle}>How long did you stay at your <span>current address</span>?</p>
           <div className={styles.pageFormYearsContainer}>
-            <Button className={styles.pageButton} isIcon={true} click={this.changeYear}>
+            <Button className={styles.pageButton} isIcon={true} onClick={changeYear}>
               {`${year} Year${year > 1 ? 's' : ''}`}
               {yearIsOpen && (
                 <div className={styles.pageButtonList}>
@@ -99,7 +62,7 @@ class Addresses extends Component {
                 </div>
               )}
             </Button>
-            <Button className={styles.pageButton} isIcon={true} click={this.changeMonth}>
+            <Button className={styles.pageButton} isIcon={true} onClick={changeMonth}>
               {`${month} Month${month > 1 ? 's' : ''}`}
               {monthIsOpen && (
                 <div className={styles.pageButtonList}>
@@ -122,7 +85,7 @@ class Addresses extends Component {
               {addresses.map((item, index) => {
                 const addr = item.split(',')
                 return (
-                  <div key={index} className={styles.addressesRow} onClick={() => this.changeAddress(index, addr)}>
+                  <div key={index} className={styles.addressesRow} onClick={() => changeAddress(index, addr)}>
                     <div className={styles.addressesBlock}>
                       <p className={styles.addressesTitle}>{`Address line ${index + 1}`}</p>
                       <Button className={styles.addressesButton} active={rowNumber === index}>{addr[0]}</Button>
@@ -138,7 +101,7 @@ class Addresses extends Component {
           )
         }} />
 
-        <ConfirmButton className={styles.pageConfirmButton} click={this.onSubmit}>Confirm and Continue</ConfirmButton>
+        <ConfirmButton className={styles.pageConfirmButton} onClick={onSubmit}>Confirm and Continue</ConfirmButton>
       </div>
     )
   }
