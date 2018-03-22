@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiKey = 'Ph_6VA2LwEOLlf-jjF5iNA12761'
+const apiKey = 'LNo3T9HgFkSiqXLuOirNFQ12774'
 
 export default {
   getAddresses: code => {
