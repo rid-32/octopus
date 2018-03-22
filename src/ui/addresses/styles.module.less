@@ -1,5 +1,14 @@
 @import '../../stylesheets/vars.less';
 
+@keyframes stratch {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 178px;
+  }
+}
+
 .container {
   background-color: @backgroundColor;
   padding-top: 8.1875rem;
@@ -17,6 +26,7 @@
 
   &Notice {
     margin-top: 4.625rem;
+    font-family: 'Brown Pro Light', sans-serif;
   }
 
   &Delimiter {
@@ -30,6 +40,7 @@
     &Title {
       text-align: left;
       margin-top: 6.5625rem;
+      font-family: 'Brown Pro Light', sans-serif;
 
       span {
         font-weight: 700;
@@ -54,13 +65,31 @@
 
     &List {
       position: absolute;
-      left: 0rem;
+      left: -3px;
       top: 100%;
-      width: 100%;
+      width: 101.3%;
       border: 3px solid @borderColor;
       background-color: @backgroundColor;
       color: #fff;
       z-index: 2;
+      height: 0px;
+      overflow: hidden;
+      animation-name: stratch;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+
+      &2 {
+        overflow: auto;
+      }
+
+      div {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+
+      div:not(:first-child) {
+        border-top: 2px solid @borderColor;
+      }
 
       div:hover {
         color: @confirmColor;
@@ -137,5 +166,9 @@
 
   &Icon {
     font-size: 3rem;
+  }
+
+  &Title {
+    font-family: 'Brown Pro Light', sans-serif;
   }
 }

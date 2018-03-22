@@ -22,7 +22,7 @@ class AddressesForm extends Component {
   }
 
   render() {
-    const { history, actions, isLoading } = this.props
+    const { history, actions, isLoading, street, town, closeMessage } = this.props
 
     return (
       <div className={styles.pageForm}>
@@ -34,18 +34,19 @@ class AddressesForm extends Component {
             history={history}
             actions={actions}
             isLoading={isLoading}
+            closeMessage={closeMessage}
           />
         </div>
         <Route path='/select' render={() => {
           return (
             <div className={styles.pageFormSearchContainer}>
-              <p className={styles.pageFormTitle}>Select your address:</p>
+              <p className={styles.pageFormTitle}>Select your Address:</p>
               <Button
                 className={styles.pageSearch}
                 isIcon={true}
                 onClick={this.toggleSelect}
               >
-                Select your Address
+                {street ? street + ', ' + town : 'Select your address:'}
               </Button>
             </div>
           )

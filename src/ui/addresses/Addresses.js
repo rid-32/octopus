@@ -65,7 +65,7 @@ class Addresses extends Component {
             <Button className={styles.pageButton} isIcon={true} onClick={changeMonth}>
               {`${month} Month${month > 1 ? 's' : ''}`}
               {monthIsOpen && (
-                <div className={styles.pageButtonList}>
+                <div className={`${styles.pageButtonList} ${styles.pageButtonList2}`}>
                   {map(range(1, 12), (item, index) => (
                     <div key={index} value={item}>{`${item} month${item > 1 ? 's' : ''}`}</div>
                   ))}
@@ -74,7 +74,10 @@ class Addresses extends Component {
             </Button>
           </div>
 
-          <AddressesForm {...this.props} />
+          <AddressesForm
+            {...this.props}
+            {...state}
+          />
         </div>
         <Route path="/select/addresses" render={() => {
           const { addresses } = this.props

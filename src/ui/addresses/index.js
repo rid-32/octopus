@@ -72,6 +72,11 @@ class AddressesContainer extends Component {
 
   closeMessage = _ => {
     const { history } = this.props
+    this.setState({
+      ...this.state,
+      street: '',
+      town: '',
+    })
     history.push('/')
   }
 

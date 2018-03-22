@@ -18,15 +18,20 @@ class Input extends Component {
   onSubmit = e => {
     e.preventDefault()
     const { value } = this.state
-    const { history, actions } = this.props
+    const { history, actions, closeMessage } = this.props
 
-    actions.setPostcode(value)
-    actions.getAddresses(value)
-      .then(addresses => history.push('/select'))
-      .catch(error => {
-        actions.unsetLoading()
-        history.push('/error')
-      })
+    if (value) {
+      actions.setPostcode(value)
+      actions.getAddresses(value)
+        .then(addresses => {
+          closeMessage()
+          history.push('/select')
+        })
+        .catch(error => {
+          actions.unsetLoading()
+          history.push('/error')
+        })
+    }
   }
 
   render() {
