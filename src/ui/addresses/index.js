@@ -66,6 +66,7 @@ class AddressesContainer extends Component {
         rowNumber: -1,
       })
       history.push('/confirmed')
+      window.scrollTo(0, 0)
     }
   }
 
